@@ -4,7 +4,7 @@
     <!-- <button @click="addItem">추가</button> -->
     <span @click="addItem" class="add-bt">
       <i class="fas fa-check add-bt-icon" ></i>
-      <i class=""></i>
+      
     </span>
   </div>
 </template>
@@ -19,6 +19,8 @@
       const addItem = () => {
         let temp = newItem.value;
         // localStorage.setItem(키, 값)
+        // 값은 추후에 json 형태로 만들어서 저장
+        // JSON.stringify(오브젝트)
         // localStorage.setItem(키, json 문자열로 저장)
         // json 저장 문자열
         /* 
@@ -27,6 +29,8 @@
 
         // 앞쪽 뒷쪽 공백 제거
         temp = temp.trim();
+        // 추후 업데이트 예정(정규표현식-문자열체크 문법)
+        // 앞자리공백  공백  뒷자리공백
         if (temp !== '') {
           localStorage.setItem(temp, temp)
           
@@ -68,7 +72,7 @@
 
 }
 .input-box{
-  widows: 70%;
+  widows: calc(100% - 60px);
   margin-left: 20px;
   font-size: 16px;
 }
