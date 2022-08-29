@@ -7,11 +7,10 @@
 
 <script>
 export default {
-  setup(){
+  setup(props, context){
     const clearAllMemo = () =>{
-      // localStorage 에서 내용 전체 삭제
-      // 추후 DB 연동 예정
-      localStorage.clear();
+     
+      context.emit('deleteitem')
     }
     return{
       clearAllMemo
@@ -35,12 +34,12 @@ export default {
 .clear-all-bt{
 
   display: inline-block;
-  widows: 100%;
+  width: 100%;
   height: 50px;
   cursor: pointer;
   border: 1px solid hotpink;
   border-radius: 5px;
-  margin: 10px;
+  margin: 10px 0;
   color: #fff;
   background-color: #333;
 }
