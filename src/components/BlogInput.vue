@@ -1,9 +1,17 @@
 <template>
   <div class="input-wrap shadow">
     <input type="text" v-model="newItem" class="input-box" maxlength="30" @keyup.enter="addItem">
-    <span @click="addItem" class="add-bt">
-      <i class="fas fa-feather-alt add-bt-icon"></i>
-    </span>
+    <div class="option">
+      <span @click="addicon(0)" class="img1">
+        이미지1
+      </span>
+      <span @click="addicon(1)" class="img2">
+        이미지2
+      </span>
+      <span @click="addItem" class="add-bt">
+        <i class="fas fa-feather-alt add-bt-icon"></i>
+      </span>
+    </div>
   </div>
 </template>
 
@@ -14,29 +22,37 @@
   export default {
     setup(props, context) {
       const newItem = ref('');
+      const newIcon = ref(0)
+
       const addItem = () => {
         let temp = newItem.value;
+        let icon = newIcon.value
         // 앞쪽 뒷쪽 공백 제거
         temp = temp.trim();
         // 추후 업데이트 예정(정규표현식-문자열체크 문법)
         //  앞자리공백   공백    뒷자리공백
         if (temp !== '') {
-          context.emit("additem", temp)
+          context.emit("additem", temp, icon)
 
-        resetItem();
+          resetItem();
+        }
+      }
+
+      // 내용 재설정
+      const resetItem = () => {
+        newItem.value = '';
+      }
+      const addicon=(index)=>{
+        newIcon.value = index;
+        console.log(index)
+      }
+
+      return {
+        newItem,
+        addItem,
+        addicon
       }
     }
-
-    // 내용 재설정
-    const resetItem = () => {
-      newItem.value = '';
-    }
-
-    return {
-      newItem,
-      addItem
-    }
-  }
   }
 </script>
 
@@ -61,14 +77,46 @@
   }
 
   .input-box {
-    width: calc(93% - 60px);
+    width: calc(93% - 250px);
     font-size: 16px;
     margin-left: 20px;
   }
 
-  .add-bt {
+  .option {
+    position: absolute;
+    right: 0;
+    top: 0;
     display: block;
-    float: right;
+
+
+  }
+
+  .img1 {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background: url('@/assets/images/animals1.png') no-repeat center;
+    background-size: cover;
+    font-size: 0;
+    cursor: pointer;
+  }
+
+  .img2 {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background: url('@/assets/images/animals2.png') no-repeat center;
+    background-size: cover;
+    font-size: 0;
+    cursor: pointer;
+  }
+  .img1:active,
+  .img2:active,
+  .img3:active {
+    outline: 3px solid hotpink;
+  }
+  .add-bt {
+    display: inline-block;
     background-color: hotpink;
     cursor: pointer;
   }

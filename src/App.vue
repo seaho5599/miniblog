@@ -45,12 +45,14 @@
         // 배열(memoItemArr) 에서도 지운다.
         memoItemArr.splice(index, 1);
       }
-      const updateMemo = (item) => {
+      const updateMemo = (item, index) => {
+      
         // localStroage 에서는 update메소드를 지원하지 않는다.
         // 찾아서 지우고, 
         localStorage.removeItem(item.id);
         // 변경한다.
-        item.complete = !item.complete;
+        // item.complete = !item.complete;
+        memoItemArr[index].complete = !memoItemArr[index].complete
         //다시 set 한다.
         localStorage.setItem(item.id, JSON.stringify(item));
       }
@@ -66,14 +68,26 @@
         return date.getFullYear().toString() + addZero(date.getMonth() + 1) + addZero(date.getDate()) +
           addZero(date.getHours()) + addZero(date.getMinutes()) + addZero(date.getSeconds());
       }
-      const addMemo = (item) => {
+      const getCurrentTime = () => {
+        let date = new Date();
+        return date.getFullYear().toString()+ '/' + addZero(date.getMonth() + 1)+ '/' + addZero(date.getDate())+ '/' +
+          addZero(date.getHours())+ ':' + addZero(date.getMinutes());
+      }
+      const iconArr = ['animals1.png', 'animals2.png']
+      const addMemo = (item, index) => {
         // json 저장 문자열
         ///{completed:false, title:메모내용, icon:파일명 ....}
+        // 아이콘 관련 처리
+        
         let memoTemp = {
           id: getCurrentDate(),
           complete: false,
           memotitle: item,
+          memodate: getCurrentTime(),
+          memoicon: iconArr[index]
         };
+
+        
         // 추후 실제 DB 연동 예정
         localStorage.setItem(memoTemp.id, JSON.stringify(memoTemp));
         // 화면갱신을 위한 배열 요소 추가

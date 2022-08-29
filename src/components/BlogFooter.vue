@@ -9,7 +9,6 @@
 export default {
   setup(props, context){
     const clearAllMemo = () =>{
-     
       context.emit('deleteitem')
     }
     return{
