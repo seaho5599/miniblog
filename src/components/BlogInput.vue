@@ -12,6 +12,17 @@
         <i class="fas fa-feather-alt add-bt-icon"></i>
       </span>
     </div>
+    <!-- 안내창 -->
+    <ModalView :show="showModal" @closemodal="showModal = false">
+      <template #header>
+        <h3>안내창</h3>
+      </template>
+      <template #body>
+        <h2>내용을 작성하여 주세요.</h2>
+      </template>
+      
+
+    </ModalView>
   </div>
 </template>
 
@@ -19,10 +30,17 @@
   import {
     ref
   } from 'vue';
+  import ModalView from '@/components/common/ModalVue.vue'
+
   export default {
+    components: {
+      ModalView,
+    },
     setup(props, context) {
       const newItem = ref('');
       const newIcon = ref(0)
+      const showModal = ref(false)
+
 
       const addItem = () => {
         let temp = newItem.value;
@@ -35,6 +53,8 @@
           context.emit("additem", temp, icon)
 
           resetItem();
+        }else{
+          showModal.value = true
         }
       }
 
@@ -42,15 +62,18 @@
       const resetItem = () => {
         newItem.value = '';
       }
-      const addicon=(index)=>{
+      const addicon = (index) => {
         newIcon.value = index;
         console.log(index)
       }
 
+
       return {
         newItem,
         addItem,
-        addicon
+        addicon,
+        showModal,
+
       }
     }
   }
@@ -110,11 +133,13 @@
     font-size: 0;
     cursor: pointer;
   }
+
   .img1:active,
   .img2:active,
   .img3:active {
     outline: 3px solid hotpink;
   }
+
   .add-bt {
     display: inline-block;
     background-color: hotpink;

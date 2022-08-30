@@ -4,7 +4,7 @@
     <BlogInput @additem="addMemo" />
     <BlogList :memodata="memoItemArr" @removeItem="deleteMemo" @updateitem="updateMemo" />
     <BlogFooter @deleteitem="clearMemo" />
-    <IntroView @closeintro ="hideIntro" v-if="introShow"/>
+    <IntroView @closeintro="hideIntro" v-if="introShow" />
   </div>
 </template>
 
@@ -40,16 +40,25 @@
           memoItemArr.push(JSON.parse(obj));
         }
         // 키값을 이용해서 정렬하기(오름차순)
-        // memoItemArr.sort();
+        memoItemArr.sort((a, b) => {
+          if (a.id > b.id) return 1;
+          if (a.id === b.id) return 0;
+          if (a.id < b.id) return -1;
+        });
       }
       const deleteMemo = (item, index) => {
         // localStrage 에서 key를 통해서 지운다.
         localStorage.removeItem(item);
         // 배열(memoItemArr) 에서도 지운다.
         memoItemArr.splice(index, 1);
+        memoItemArr.sort((a, b) => {
+          if (a.id > b.id) return 1;
+          if (a.id === b.id) return 0;
+          if (a.id < b.id) return -1;
+        });
       }
       const updateMemo = (item, index) => {
-      
+
         // localStroage 에서는 update메소드를 지원하지 않는다.
         // 찾아서 지우고, 
         localStorage.removeItem(item.id);
@@ -73,8 +82,9 @@
       }
       const getCurrentTime = () => {
         let date = new Date();
-        return date.getFullYear().toString()+ '/' + addZero(date.getMonth() + 1)+ '/' + addZero(date.getDate())+ '/' +
-          addZero(date.getHours())+ ':' + addZero(date.getMinutes());
+        return date.getFullYear().toString() + '/' + addZero(date.getMonth() + 1) + '/' + addZero(date.getDate()) +
+          '/' +
+          addZero(date.getHours()) + ':' + addZero(date.getMinutes());
       }
       const iconArr = ['animals1.png', 'animals2.png']
 
@@ -82,7 +92,7 @@
         // json 저장 문자열
         ///{completed:false, title:메모내용, icon:파일명 ....}
         // 아이콘 관련 처리
-        
+
         let memoTemp = {
           id: getCurrentDate(),
           complete: false,
@@ -91,7 +101,7 @@
           memoicon: iconArr[index]
         };
 
-        
+
         // 추후 실제 DB 연동 예정
         localStorage.setItem(memoTemp.id, JSON.stringify(memoTemp));
         // 화면갱신을 위한 배열 요소 추가
@@ -104,12 +114,13 @@
         // splice는 다 없에라
         memoItemArr.splice(0);
       }
-      const introShow = ref(true);
-      const hideIntro = ()=> {
+      // 첫화면(IntroView) 보여질 여부
+      const introShow = ref(false);
+      const hideIntro = () => {
         introShow.value = false;
       }
 
-      
+
       return {
         memoItemArr,
         deleteMemo,
