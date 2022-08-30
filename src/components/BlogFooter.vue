@@ -6,10 +6,15 @@
 </template>
 
 <script>
+import {useStore} from 'vuex'
 export default {
-  setup(props, context){
+  setup(){
+    const store = useStore();
+
     const clearAllMemo = () =>{
-      context.emit('deleteitem')
+    
+    // context.emit('deleteitem')
+    store.commit('CLEAR_MEMO');
     }
     return{
       clearAllMemo
