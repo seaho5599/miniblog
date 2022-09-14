@@ -2,18 +2,18 @@
   <div class="intro-wrap" @click="closeIntro">
     <h1>My Memo</h1>
     <div class="intro-cont">
-      <img :src="require('@/assets/images/animals1.png')" alt="" />
+      <img :src="require('@/assets/images/animals1.png')" />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  setup(props, context){
+  setup(props, context) {
     const closeIntro = () => {
       context.emit('closeintro');
     }
-    return{
+    return {
       closeIntro
     }
   }
@@ -21,14 +21,15 @@ export default {
 </script>
 
 <style scoped>
-  .intro-wrap{
+  .intro-wrap {
     position: fixed;
     left: 0;
     top: 0;
     display: block;
     width: 100vw;
-    height: 100vw;
-    background: #fff;
+    height: 100vh;
+    background-color: #fff;
     text-align: center;
+    cursor: pointer;
   }
 </style>

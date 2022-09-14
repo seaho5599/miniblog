@@ -44,7 +44,7 @@ const timeUtil = {
 const state = {
   headerText: 'My Diary Memo',
   memoItemArr: storage.getData(),
-  iconArr: ['dog1.png', 'dog2.png', 'str.png']
+  iconArr: ['animals1.png', 'animals2.png']
 };
 
 const actions = {
@@ -146,4 +146,4 @@ const getters = {
   }
 };
 
-export default { state, actions, mutations, getters} 
+export default { state, actions, mutations, getters}

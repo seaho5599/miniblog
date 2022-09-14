@@ -1,10 +1,10 @@
 import {
   createStore
 } from 'vuex';
-import memoStore from './modules/memoStore.js';
 
+import memoStore from './modules/memoStore';
 export default createStore({
-  modules:{
+  modules: {
     memoStore
   }
-})
+});
