@@ -1,24 +1,25 @@
 <template>
   <div class="wrap">
     <BlogHeader/>
-    <BlogInput/>
+    
     <BlogList/>
     <BlogFooter/>
     <IntroView @closeintro="hideIntro" v-if="introShow"/>
   </div>
+    
 </template>
 
 <script>
 import {ref} from 'vue';
 import BlogHeader from '@/components/BlogHeader.vue'
-import BlogInput from '@/components/BlogInput.vue'
+
 import BlogList from '@/components/BlogList.vue'
 import BlogFooter from '@/components/BlogFooter.vue'
 import IntroView from '@/components/IntroView.vue'
 export default {
   components: {
     BlogHeader,
-    BlogInput,
+    
     BlogList,
     BlogFooter,
     IntroView
@@ -75,7 +76,7 @@ body {
 .wrap {
   position: relative;
   display: block;
-  width: 90%;
+  width: 50%;
   margin: 0 auto;
 }
 </style>

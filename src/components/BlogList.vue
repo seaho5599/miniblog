@@ -1,6 +1,5 @@
 <template>
   <div class="list-wrap">
-
     <TransitionGroup name="list" tag="ul">
     <!-- <ul> -->
         <li v-for="(item, index) in items" v-bind:key="index" class="shadow"> 
@@ -27,22 +26,26 @@
 
 <script>
 import { useStore } from 'vuex'
-import { computed } from 'vue'
+import { computed} from 'vue'
 export default {  
   setup() {
-    // vuex store 사용
+    // vuex store 사용  
     const store = useStore();
-    const items = computed( () => store.getters.getMemoArr );
-    const removeMemo = (item, index) => {
+    store.dispatch('fetchReadMemo')
+    // php 서버에서 목록 가져오기
+    // store.dispatch('fetchReadMemo');
+    const items = computed( () => store.getters.getMemoArr)
+    const removeMemo = (id, index) => {
       // context.emit('removeitem', item, index);
       // store.commit('DELETE_MEMO', {item, index})
-      store.dispatch('fetchDeleteMemo', {item, index})
+      store.dispatch('fetchDeleteMemo', {id, index})
     }
     const updateMemo = (item, index) => {      
       // context.emit("updateitem", item, index);
       // store.commit('UPDATE_MEMO', {item, index})
       store.dispatch('fetchUpdateMemo', {item, index})
     }
+    
     return {            
       removeMemo,
       updateMemo,
@@ -60,9 +63,11 @@ export default {
     margin: 10px 0;
     background-color: #fff;
     border-radius: 5px;
-    padding: 0 20px;
+    padding: 0 50px;
   }
-  .info {
+  .info { 
+    display: flex;
+    align-items: center;
     margin-left: auto;
   }
   .icon {

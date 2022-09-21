@@ -9,6 +9,9 @@
       <span @click="addIcon(1)" class="img2">  
         이미지2         
       </span>
+      <span @click="addIcon(2)" class="img3">  
+        이미지2         
+      </span>
       <span @click="addItem" class="add-bt">
         <i class="fas fa-plus add-bt-icon"></i>
       </span>
@@ -115,7 +118,7 @@
     height: 40px;
     font-size: 0;
     cursor: pointer;
-    background: url('@/assets/images/animals1.png') no-repeat center;
+    background: url('@/assets/images/weather1.png') no-repeat center;
     background-size: cover;
   }
   .img2 {
@@ -124,7 +127,16 @@
     height: 40px;
     font-size: 0;
     cursor: pointer;
-    background: url('@/assets/images/animals2.png') no-repeat center;
+    background: url('@/assets/images/weather2.png') no-repeat center;
+    background-size: cover;
+  }
+  .img3 {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    font-size: 0;
+    cursor: pointer;
+    background: url('@/assets/images/weather3.png') no-repeat center;
     background-size: cover;
   }
 
