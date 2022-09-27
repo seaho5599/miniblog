@@ -1,38 +1,39 @@
 <template>
   <div class="wrap">
-    <BlogHeader/>
     
+    <router-view/>
+    <!-- <BlogHeader/>
     <BlogList/>
     <BlogFooter/>
     <IntroView @closeintro="hideIntro" v-if="introShow"/>
+    -->
   </div>
-    
 </template>
 
 <script>
-import {ref} from 'vue';
-import BlogHeader from '@/components/BlogHeader.vue'
+// import {ref} from 'vue';
+// import BlogHeader from '@/components/BlogHeader.vue'
 
-import BlogList from '@/components/BlogList.vue'
-import BlogFooter from '@/components/BlogFooter.vue'
-import IntroView from '@/components/IntroView.vue'
+// import BlogList from '@/components/BlogList.vue'
+// import BlogFooter from '@/components/BlogFooter.vue'
+// import IntroView from '@/components/IntroView.vue'
 export default {
   components: {
-    BlogHeader,
+    // BlogHeader,
     
-    BlogList,
-    BlogFooter,
-    IntroView
+    // BlogList,
+    // BlogFooter,
+    // IntroView
   },
   setup() {
     // 첫화면(IntroView) 보여질 여부
-    const introShow = ref(false);
-    const hideIntro = () => {
-      introShow.value = false;
-    }
+    // const introShow = ref(false);
+    // const hideIntro = () => {
+    //   introShow.value = false;
+    // }
     return {   
-      hideIntro,
-      introShow
+      // hideIntro,
+      // introShow
     }
   }
 }
@@ -77,6 +78,7 @@ body {
   position: relative;
   display: block;
   width: 50%;
+  /* height: 100%; */
   margin: 0 auto;
 }
 </style>

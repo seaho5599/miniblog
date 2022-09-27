@@ -6,6 +6,7 @@
     </div>
     <BlogTitle/>
     <BlogInput/>
+
   </header>
 </template>
 
@@ -17,6 +18,7 @@ import BlogTitle from '@/components/BlogTitle.vue'
 export default {
   components:{BlogTitle,BlogInput},
   setup() {
+    
     const title = ref('');
     const store = useStore();
     // title.value = computed(() => store.state.memoStore.headerText)
@@ -29,10 +31,12 @@ export default {
     const weekList = new Array("Sun.", "Mon", "Tue.", "Wed.", "Thu.", "Fri.", "Sat.");
     const week = weekList[now.getDay()];
     todoDate.value = `${month}/${date} ${week}`
+    
     return {
       title,todoDate
     }
-  }
+  },
+  
 }
 </script>
 
@@ -40,7 +44,7 @@ export default {
   .header{
     display: flex;
     padding: 20px 50px;
-    background: skyblue;
+    background: #0a192f;
     height: 300px;
     flex-direction: column;
     justify-content: space-between;
@@ -54,11 +58,14 @@ export default {
     font-weight: 700;
     text-align: center;
     font-size: 18px;
+    color: #fff;
   }
   .date{
     /* float: right; */
     /* font-size: 18px; */
     margin: 10px 0;
     line-height: 18px;
+    color: #fff;
   }
+
 </style>
